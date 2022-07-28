@@ -22,10 +22,10 @@ def authorizeCode(request):
         "code": code,
         "redirect_uri": redirectUrl
     }
-    response = requests.post(requestUrl, data=requestBody)
+    headers = {
+        "Accept": "application/json"
+    }
+    response = requests.post(requestUrl, data=requestBody, headers=headers)
     # accessToken = response.json()['access_token']
     responseText = response.text
-    if(responseText.find("error") != -1):
-        return HttpResponse("error" + responseText)
-    accessToken = str(response.text)
-    return HttpResponse(accessToken)
+    return(HttpResponse(responseText))
