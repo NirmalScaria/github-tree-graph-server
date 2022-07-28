@@ -20,4 +20,6 @@ from django.urls import path, include
 urlpatterns = [
     path('', views.index, name='index'),
     path('admin/', admin.site.urls),
+    path('github-tree-graph-server', views.githubTreeGraphServer),
+    path('github-tree-graph-server/success', views.authorisationSuccess),
 ]
