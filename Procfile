@@ -1,1 +1,1 @@
-web: gunicorn myproject.wsgi
+web: gunicorn github_tree_graph_server.wsgi
