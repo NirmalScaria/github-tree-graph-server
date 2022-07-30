@@ -5,4 +5,4 @@ psycopg2==2.9.2
 gunicorn==20.1.0
 requests>=2.20.0
 django-cors-headers==3.13.0
-git+https://github.com/thisbejim/Pyrebase@50cf32362a11f17c3846017081b2d2ecce1ce46f
+Pyrebase4==4.5.0
