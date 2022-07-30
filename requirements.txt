@@ -6,3 +6,4 @@ gunicorn==20.1.0
 requests==2.11.1
 django-cors-headers==3.13.0
 Pyrebase==3.0.27
+urllib3==1.26.5
