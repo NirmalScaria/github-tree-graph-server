@@ -53,6 +53,7 @@ def authorizeCode(request):
     response = requests.post(requestUrl, data=requestBody, headers=headers).json()
     if("access_token" not in response):
         database.child("TokenData").child(browserToken).child("isAuthenticated").set(False, adminUser['idToken'])
+        database.child("TokenData").child(browserToken).child("githubToken").set("FAIL", adminUser['idToken'])
         database.child("TokenData").child(browserToken).child("time").set(int(round(time.time())), adminUser['idToken'])
         return(HttpResponse("ERROR"))
     accessToken = response['access_token']
