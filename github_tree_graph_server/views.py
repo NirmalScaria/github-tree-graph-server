@@ -40,7 +40,7 @@ def authorizeCode(request):
     requestUrl = "https://github.com/login/oauth/access_token"
     browserToken = request.GET.get('browsertoken')
     if(browserToken == None):
-        return(HttpResponse("ERROR"))
+        return(HttpResponse('{"ERROR": "No browser token provided"}'))
     requestBody = {
         "client_id": clientId,
         "client_secret": os.environ.get("GITHUB_CLIENT_SECRET"),
@@ -55,7 +55,7 @@ def authorizeCode(request):
         database.child("TokenData").child(browserToken).child("isAuthenticated").set(False, adminUser['idToken'])
         database.child("TokenData").child(browserToken).child("githubToken").set("FAIL", adminUser['idToken'])
         database.child("TokenData").child(browserToken).child("time").set(int(round(time.time())), adminUser['idToken'])
-        return(HttpResponse("ERROR"))
+        return(HttpResponse('{"ERROR": "' + str(response) + '"}'))
     accessToken = response['access_token']
     userData = getUserData(accessToken)
     database.child("TokenData").child(browserToken).child("githubToken").set(accessToken, adminUser['idToken'])
