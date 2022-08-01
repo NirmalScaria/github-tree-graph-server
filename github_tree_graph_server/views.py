@@ -20,9 +20,7 @@ adminEmail = os.environ.get("ADMIN_EMAIL")
 adminPassword = os.environ.get("ADMIN_PASSWORD")
 
 firebase = pyrebase.initialize_app(firebaseConfig)
-authe = firebase.auth()
-database = firebase.database()
-adminUser = authe.sign_in_with_email_and_password(adminEmail, adminPassword)
+
 
 def index(request):
     return render(request, 'github_tree_graph_server/index.html')
@@ -34,6 +32,9 @@ def authorisationSuccess(request):
     return render(request, 'github_tree_graph_server/authorisation_success.html')
 
 def authorizeCode(request):
+    authe = firebase.auth()
+    database = firebase.database()
+    adminUser = authe.sign_in_with_email_and_password(adminEmail, adminPassword)
     code = request.GET.get('code')
     clientId = "91ddd618eba025e4104e"
     redirectUrl = "https://scaria.dev/github-tree-graph/authorize/"
